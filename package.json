@@ -52,7 +52,10 @@
         "cypress-axe": "^1.5.0",
         "eslint-import-resolver-alias": "^1.1.2",
         "eslint-plugin-import": "^2.29.0",
-        "tailwindcss": "^3.3.5"
+        "tailwindcss": "^3.3.5",
+        "webpack": "^5.89.0",
+        "webpack-merge": "^5.10.0",
+        "yaml-lint": "^1.7.0"
     },
     "scripts": {
         "build": "NODE_ENV=production wp-scripts build",
@@ -61,12 +64,12 @@
         "create:dist": "rsync -r --include-from=.distinclude --exclude-from=.distignore . ./bluehost-wordpress-plugin",
         "create:zip": "cd ./bluehost-wordpress-plugin && zip -r -9 ../bluehost-wordpress-plugin.zip . && ls -lh ../bluehost-wordpress-plugin.zip",
         "cypress": "npm cypress open",
-        "develop": "npm run start",
         "develop:analyzer": "npm run start:analyzer",
+        "develop": "npm run start",
         "i18n": "wpi18n addtextdomain && composer run i18n",
         "lint:css": "wp-scripts lint-style '**/*.css'",
-        "lint:js": "wp-scripts lint-js ./src",
         "lint:js:fix": "wp-scripts lint-js ./src --fix",
+        "lint:js": "wp-scripts lint-js ./src",
         "lint:pkg-json": "wp-scripts lint-pkg-json",
         "lint:yml": "yamllint --ignore=node_modules/** --ignore=vendor/** **/*.yml",
         "log:watch": "wp-env run wordpress 'tail -f /var/www/html/wp-content/debug.log'",
@@ -76,10 +79,10 @@
         "set-wp-version": "node ./set-latest-wp-version.js",
         "simulate-runner-build": "npm run prebuild:cleanup && npm i --legacy-peer-deps && npm run php-deps && npm run build && npm run create:dist && npm run create:zip",
         "srb": "npm run simulate-runner-build",
-        "start": "NODE_ENV=develop wp-scripts start",
         "start:analyzer": "npm run start --webpack-bundle-analyzer",
-        "storybook:dev": "start-storybook -c ./storybook",
+        "start": "NODE_ENV=develop wp-scripts start",
         "storybook:build": "build-storybook -c ./storybook -o ./.docs",
+        "storybook:dev": "start-storybook -c ./storybook",
         "test:e2e": "npx cypress run",
         "test:unit": "wp-scripts test-unit-js"
     }
