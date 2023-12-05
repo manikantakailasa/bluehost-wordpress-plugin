@@ -34,7 +34,7 @@ jobs:
 
       - uses: technote-space/get-diff-action@v6
         with:
-          SUFFIX_FILTER: .php
+          PATTERNS: '**.php'
 
       - name: Get Composer cache directory
         id: composer-cache
