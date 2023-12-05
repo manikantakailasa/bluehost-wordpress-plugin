@@ -1,7 +1,7 @@
 <?php
 // phpcs:disable Squiz.PHP.CommentedOutCode.Found
 /**
- * Correct missing nfd_coming_soon and mm_coming_soon sync
+ * Correct missing nfd_coming_soon and mm_coming_soon sync.
  *
  * Installers set a mm_coming_soon value - the plugin relies on the nfd_coming_soon value.
  * After 2.13.8 and before 3.0.3 the legacy mm_coming_soon and newer nfd_coming_soon did not sync anymore.
@@ -50,7 +50,7 @@
  * case 8. mm_cs is false (undefined), nfd_cs is 'false'
  *     Not sure how we got here, but we should copy nfd_cs value to mm_cs value so they are consistent.
  *     Use nfd_cs to set mm_cs to match.
- **/
+ */
 
 $mm_coming_soon  = get_option( 'mm_coming_soon' );   // 'true', 'false' or false if not set
 $nfd_coming_soon = get_option( 'nfd_coming_soon' ); // 'true', 'false' or false if not set
