@@ -19,6 +19,7 @@ namespace Bluehost;
 function nfd_settings_revisions( $num, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 	return get_option( 'nfd_wp_post_revisions', 5 );
 }
+
 add_filter( 'wp_revisions_to_keep', __NAMESPACE__ . '\\nfd_settings_revisions', 10, 2 );
 
 if ( ! defined( 'EMPTY_TRASH_DAYS' ) ) {

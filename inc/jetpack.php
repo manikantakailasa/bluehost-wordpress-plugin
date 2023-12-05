@@ -55,4 +55,5 @@ function jetpack_construction() {
 		return true;
 	}
 }
+
 add_filter( 'jetpack_is_under_construction_plugin', __NAMESPACE__ . '\\jetpack_construction' );

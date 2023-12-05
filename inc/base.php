@@ -85,6 +85,7 @@ add_action( 'admin_init', __NAMESPACE__ . '\\bluehost_setup' );
 function bluehost_install_date_filter( $install_date ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 	return bluehost_get_plugin_install_date();
 }
+
 add_filter( 'nfd_install_date_filter', __NAMESPACE__ . '\\bluehost_install_date_filter' );
 
 /**
