@@ -35,6 +35,13 @@ final class Admin {
 		}
 	}
 
+	/**
+	 * Add Bluehost data to runtime.
+	 *
+	 * @param array $sdk - array of data to be passed to runtime.
+	 *
+	 * @return array
+	 */
 	public static function add_to_runtime( $sdk ) {
 		include_once BLUEHOST_PLUGIN_DIR . '/inc/Data.php';
 
@@ -136,6 +143,8 @@ final class Admin {
 	/**
 	 * Load Page Scripts & Styles.
 	 *
+	 * @param string $hook Page hook.
+	 *
 	 * @return void
 	 */
 	public static function assets( $hook ) {
@@ -154,7 +163,7 @@ final class Admin {
 			\wp_register_script(
 				'bluehost-script',
 				BLUEHOST_BUILD_URL . '/index.js',
-				array_merge( $asset['dependencies'], [ 'nfd-runtime' ] ),
+				array_merge( $asset['dependencies'], array( 'nfd-runtime' ) ),
 				$asset['version'],
 				true
 			);

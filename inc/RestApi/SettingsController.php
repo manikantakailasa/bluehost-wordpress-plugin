@@ -35,7 +35,6 @@ class SettingsController extends \WP_REST_Controller {
 				),
 			)
 		);
-
 	}
 
 	/**
@@ -189,7 +188,6 @@ class SettingsController extends \WP_REST_Controller {
 		);
 
 		return $settings;
-
 	}
 
 	/**
@@ -204,5 +202,4 @@ class SettingsController extends \WP_REST_Controller {
 
 		return true;
 	}
-
 }

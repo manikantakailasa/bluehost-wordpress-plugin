@@ -174,7 +174,7 @@ class Plugin_PHP_Compat_Check {
 	 * Deactivate the plugin
 	 */
 	public function deactivate() {
-		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 		if ( function_exists( 'deactivate_plugins' ) ) {
 			deactivate_plugins( $this->file );
 		}
@@ -193,5 +193,4 @@ class Plugin_PHP_Compat_Check {
 		printf( esc_html__( 'The "%s" plugin has been deactivated.', 'wp-plugin-bluehost' ), esc_html( $this->name ) );
 		echo '</p></div>';
 	}
-
 }

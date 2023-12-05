@@ -68,7 +68,7 @@ class NFD_Plugin_Compat_Check {
 	 * @param string $file Plugin file
 	 */
 	public function __construct( $file ) {
-		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 		// require_once ABSPATH . '/wp-includes/option.php';
 		$this->slug      = $this->get_plugin_slug( $file );
 		$this->name      = $this->get_plugin_name( $file );
@@ -78,7 +78,7 @@ class NFD_Plugin_Compat_Check {
 	/**
 	 * Get the plugin name from the plugin file headers
 	 *
-	 * @param string $file Plugin file
+	 * @param  string $file Plugin file
 	 * @return string
 	 */
 	public function get_plugin_name( $file ) {
@@ -89,7 +89,7 @@ class NFD_Plugin_Compat_Check {
 	/**
 	 * Get the plugin slug from the plugin path
 	 *
-	 * @param string $file Plugin file
+	 * @param  string $file Plugin file
 	 * @return string
 	 */
 	public function get_plugin_slug( $file ) {
@@ -157,7 +157,7 @@ class NFD_Plugin_Compat_Check {
 				$error->add(
 					'nfd_plugin_incompatible',
 					sprintf(
-						/* translators: 1: plugin name 2: incompatible plugin name */
+					/* translators: 1: plugin name 2: incompatible plugin name */
 						__( '"%1$s" has self-deactivated. It is incompatible with "%2$s".', 'wp-plugin-bluehost' ),
 						$this->name,
 						$incompatible_name
@@ -184,7 +184,7 @@ class NFD_Plugin_Compat_Check {
 				$error->add(
 					'nfd_plugin_legacy',
 					sprintf(
-						/* translators: 1: legacy plugin name 2: plugin name */
+					/* translators: 1: legacy plugin name 2: plugin name */
 						__( '"%1$s" has been deactivated. It is incompatible with "%2$s".', 'wp-plugin-bluehost' ),
 						$legacy_name,
 						$this->name
@@ -238,5 +238,4 @@ class NFD_Plugin_Compat_Check {
 		}
 		delete_option( 'nfd_plugins_compat_check_conflicts' );
 	}
-
 }
