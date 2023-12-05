@@ -84,6 +84,8 @@
         "lint:fix": "concurrently \"npm:lint:*fix\"",
         "lint:js:fix": "wp-scripts lint-js ./src --fix",
         "lint:js": "wp-scripts lint-js ./src",
+        "lint:php": "composer run lint",
+        "lint:php:fix": "composer run fix",
         "lint:pkg-json": "wp-scripts lint-pkg-json",
         "lint:yml": "yamllint --ignore=node_modules/** --ignore=vendor/** **/*.yml",
         "lint": "concurrently \"npm:lint:*(!fix)\"",
