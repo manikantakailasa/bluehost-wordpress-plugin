@@ -36,8 +36,16 @@
     }
   },
   "scripts": {
-    "fix": "./vendor/bin/phpcbf --standard=./.phpcs.dist.xml",
-    "lint": "./vendor/bin/phpcs --standard=./.phpcs.dist.xml",
+    "fix": "@fix:standards",
+    "fix:standards": [
+        "./vendor/bin/phpcbf --standard=./.phpcs.dist.xml",
+        "PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix -v --diff"
+    ],
+    "test": "@test:standards",
+    "test:standards": [
+        "./vendor/bin/phpcs --standard=./.phpcs.dist.xml",
+        "PHP_CS_FIXER_IGNORE_ENV=true ./vendor/bin/php-cs-fixer fix -v --diff --dry-run"
+    ],
     "i18n": [
       "vendor/bin/wp i18n make-pot . ./languages/bluehost-wordpress-plugin.pot --headers=Report-Msgid-Bugs-To:https://github.com/bluehost/bluehost-wordpress-plugin/issues --exclude=assets,storybook,tests,src",
       "vendor/bin/wp i18n make-pot . ./languages/bluehost-wordpress-plugin.pot --headers=POT-Creation-Date:null --exclude=assets,storybook,tests,src"
@@ -50,13 +58,14 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "@stable",
-    "roave/security-advisories": "dev-latest",
+    "friendsofphp/php-cs-fixer": "^2.19",
     "newfold-labs/wp-php-standards": "^1.2",
+    "phpcompatibility/phpcompatibility-wp": "@stable",
+    "roave/security-advisories": "dev-latest",
+    "squizlabs/php_codesniffer": "@stable",
     "wp-cli/i18n-command": "^2.4.4",
     "wp-coding-standards/wpcs": "^3.0",
-    "wp-phpunit/wp-phpunit": "^6.3.1",
-    "squizlabs/php_codesniffer": "@stable",
-    "phpcompatibility/phpcompatibility-wp": "@stable"
+    "wp-phpunit/wp-phpunit": "^6.3.1"
   },
   "require": {
     "newfold-labs/wp-module-business-reviews": "^1.1.1",

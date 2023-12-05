@@ -52,6 +52,7 @@
 
 	<!-- WordPress Coding Standards that we don't want to enforce. -->
 	<rule ref="WordPress-Core">
+			<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 			<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
 			<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
 			<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
