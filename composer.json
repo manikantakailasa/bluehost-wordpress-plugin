@@ -49,10 +49,14 @@
     "i18n": "Generate a .pot file for translation."
   },
   "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "@stable",
     "roave/security-advisories": "dev-latest",
     "newfold-labs/wp-php-standards": "^1.2",
     "wp-cli/i18n-command": "^2.4.4",
-    "wp-phpunit/wp-phpunit": "^6.3.1"
+    "wp-coding-standards/wpcs": "^3.0",
+    "wp-phpunit/wp-phpunit": "^6.3.1",
+    "squizlabs/php_codesniffer": "@stable",
+    "phpcompatibility/phpcompatibility-wp": "@stable"
   },
   "require": {
     "newfold-labs/wp-module-business-reviews": "^1.1.1",
