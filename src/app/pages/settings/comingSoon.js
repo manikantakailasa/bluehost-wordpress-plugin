@@ -1,12 +1,11 @@
 import { useState } from '@wordpress/element';
 import { useUpdateEffect } from 'react-use';
-import { Alert, ToggleField } from '@newfold/ui-component-library';
+import { Alert, Container, ToggleField } from '@newfold/ui-component-library';
 import AppStore from '../../data/store';
 import {
 	bluehostSettingsApiFetch,
 	comingSoonAdminbarToggle,
 } from '../../util/helpers';
-import { SectionSettings } from 'App/components/section';
 import { useNotification } from 'App/components/notifications';
 
 const ComingSoon = () => {
@@ -67,11 +66,11 @@ const ComingSoon = () => {
 	const getComingSoonSectionTitle = () => {
 		const getStatus = () => {
 			return comingSoon ? (
-				<span className="nfd-text-[#e10001]">
-					{ __( 'Coming Soon', 'wp-plugin-bluehost' ) }
+				<span className="nfd-text-[#e10001] coming-soon-status">
+					{ __( 'Not Live', 'wp-plugin-bluehost' ) }
 				</span>
 			) : (
-				<span className="nfd-text-[#008112]">
+				<span className="nfd-text-[#008112] coming-soon-status">
 					{ __( 'Live', 'wp-plugin-bluehost' ) }
 				</span>
 			);
@@ -84,18 +83,27 @@ const ComingSoon = () => {
 		);
 	};
 
+	const getComingSoonSectionDescription = () => {
+		return comingSoon
+			? __(
+					'Turn off your "Coming Soon" page when you are ready to launch your website.',
+					'wp-plugin-bluehost'
+			  )
+			: __(
+					'Turn on your "Coming Soon" page when you need to make major changes to your website.',
+					'wp-plugin-bluehost'
+			  );
+	};
+
 	return (
-		<SectionSettings
+		<Container.SettingsField
 			title={ getComingSoonSectionTitle() }
-			description={ __(
-				'Still building your site? Need to make a big change?',
-				'wp-plugin-bluehost'
-			) }
+			description={ getComingSoonSectionDescription() }
 		>
 			<div className="nfd-flex nfd-flex-col nfd-gap-6">
 				<ToggleField
 					id="coming-soon-toggle"
-					label="Coming soon page"
+					label="Coming Soon page"
 					description={ __(
 						'Your Bluehost Coming Soon page lets you hide your site from visitors while you make the magic happen.',
 						'wp-plugin-bluehost'
@@ -124,7 +132,7 @@ const ComingSoon = () => {
 					</Alert>
 				) }
 			</div>
-		</SectionSettings>
+		</Container.SettingsField>
 	);
 };
 

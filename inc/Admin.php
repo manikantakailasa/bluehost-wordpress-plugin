@@ -7,6 +7,8 @@
 
 namespace Bluehost;
 
+use function NewfoldLabs\WP\Context\getContext;
+
 /**
  * \Bluehost\Admin
  */
@@ -35,6 +37,13 @@ final class Admin {
 		}
 	}
 
+	/**
+	 * Add to runtime
+	 *
+	 * @param Array $sdk - The runtime array
+	 *
+	 * @return array
+	 */
 	public static function add_to_runtime( $sdk ) {
 		include_once BLUEHOST_PLUGIN_DIR . '/inc/Data.php';
 
@@ -49,14 +58,49 @@ final class Admin {
 	 * @return array
 	 */
 	public static function subpages() {
-		return array(
-			'bluehost#/home'        => __( 'Home', 'wp-plugin-bluehost' ),
-			'bluehost#/store'       => __( 'Store', 'wp-plugin-bluehost' ),
+		global $bluehost_module_container;
+
+		$home        = array(
+			'bluehost#/home' => __( 'Home', 'wp-plugin-bluehost' ),
+		);
+		$store       = array(
+			'bluehost#/store' => __( 'Store', 'wp-plugin-bluehost' ),
+		);
+		$marketplace = array(
 			'bluehost#/marketplace' => __( 'Marketplace', 'wp-plugin-bluehost' ),
+		);
+		$performance = array(
 			'bluehost#/performance' => __( 'Performance', 'wp-plugin-bluehost' ),
-			'bluehost#/settings'    => __( 'Settings', 'wp-plugin-bluehost' ),
-			'bluehost#/staging'     => __( 'Staging', 'wp-plugin-bluehost' ),
-			'bluehost#/help'        => __( 'Help', 'wp-plugin-bluehost' ),
+		);
+		$settings    = array(
+			'bluehost#/settings' => __( 'Settings', 'wp-plugin-bluehost' ),
+		);
+		$staging     = array(
+			'bluehost#/staging' => __( 'Staging', 'wp-plugin-bluehost' ),
+		);
+		$help        = array(
+			'bluehost#/help' => __( 'Help', 'wp-plugin-bluehost' ),
+		);
+
+		// wp-cloud adjustments
+		if ( 'atomic' === getContext( 'platform' ) ) {
+			return array_merge(
+				$home,
+				$store,
+				$marketplace,
+				$settings,
+				$help
+			);
+		}
+
+		return array_merge(
+			$home,
+			$store,
+			$marketplace,
+			$performance,
+			$settings,
+			$staging,
+			$help
 		);
 	}
 
@@ -136,6 +180,8 @@ final class Admin {
 	/**
 	 * Load Page Scripts & Styles.
 	 *
+	 * @param String $hook - The hook name
+	 *
 	 * @return void
 	 */
 	public static function assets( $hook ) {
@@ -154,7 +200,7 @@ final class Admin {
 			\wp_register_script(
 				'bluehost-script',
 				BLUEHOST_BUILD_URL . '/index.js',
-				array_merge( $asset['dependencies'], [ 'nfd-runtime' ] ),
+				array_merge( $asset['dependencies'], array( 'nfd-runtime' ) ),
 				$asset['version'],
 				true
 			);

@@ -1,9 +1,13 @@
 import { useState } from '@wordpress/element';
 import { useUpdateEffect } from 'react-use';
-import { Alert, SelectField, ToggleField } from '@newfold/ui-component-library';
+import {
+	Alert,
+	Container,
+	SelectField,
+	ToggleField,
+} from '@newfold/ui-component-library';
 import AppStore from '../../data/store';
 import { bluehostSettingsApiFetch } from '../../util/helpers';
-import { SectionSettings } from 'App/components/section';
 import { useNotification } from 'App/components/notifications';
 
 const OldPostsComments = ( { setError, notify } ) => {
@@ -219,11 +223,7 @@ const CommentsPerPage = ( { setError, notify } ) => {
 	return (
 		<SelectField
 			id="comments-per-page-select"
-			label={
-				__( 'Display ', 'wp-plugin-bluehost' ) +
-				commentsPerPage +
-				__( ' comments per page.', 'wp-plugin-bluehost' )
-			}
+			label={ __( 'Comments to display per page', 'wp-plugin-bluehost' ) }
 			value={ commentsPerPage }
 			selectedLabel={ commentsPerPage }
 			options={ [
@@ -244,7 +244,7 @@ const CommentSettings = () => {
 
 	const notify = useNotification();
 	return (
-		<SectionSettings
+		<Container.SettingsField
 			title={ __( 'Comments', 'wp-plugin-bluehost' ) }
 			description={ __(
 				'Comments allow visitors to provide feedback and respond to your posts or pages.',
@@ -264,7 +264,7 @@ const CommentSettings = () => {
 					</Alert>
 				) }
 			</div>
-		</SectionSettings>
+		</Container.SettingsField>
 	);
 };
 

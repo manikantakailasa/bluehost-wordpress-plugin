@@ -1,9 +1,8 @@
 import { useState } from '@wordpress/element';
 import { useUpdateEffect } from 'react-use';
-import { Alert, SelectField } from '@newfold/ui-component-library';
+import { Alert, Container, SelectField } from '@newfold/ui-component-library';
 import AppStore from 'App/data/store';
 import { bluehostSettingsApiFetch } from 'App/util/helpers';
-import { SectionSettings } from 'App/components/section';
 import { useNotification } from 'App/components/notifications';
 
 const ContentRevisions = ( { setError, notify } ) => {
@@ -78,7 +77,7 @@ const ContentRevisions = ( { setError, notify } ) => {
 		<SelectField
 			id="content-revisions-select"
 			label={ __(
-				'Number of revisions posts can save ',
+				'Number of revisions per post to save ',
 				'wp-plugin-bluehost'
 			) }
 			description={ contentRevisionsDescriptionText() }
@@ -157,7 +156,10 @@ const EmptyTrash = ( { setError, notify } ) => {
 	return (
 		<SelectField
 			id="empty-trash-select"
-			label={ __( 'Trash emptying frequency ', 'wp-plugin-bluehost' ) }
+			label={ __(
+				'Number of weeks inbetween emptying trash ',
+				'wp-plugin-bluehost'
+			) }
 			description={
 				__(
 					'The trash will automatically empty every ',
@@ -190,7 +192,7 @@ const ContentSettings = () => {
 
 	const notify = useNotification();
 	return (
-		<SectionSettings
+		<Container.SettingsField
 			title={ __( 'Content Options', 'wp-plugin-bluehost' ) }
 			description={ __(
 				'Controls for content revisions and how often to empty the trash.',
@@ -210,7 +212,7 @@ const ContentSettings = () => {
 					</Alert>
 				) }
 			</div>
-		</SectionSettings>
+		</Container.SettingsField>
 	);
 };
 
