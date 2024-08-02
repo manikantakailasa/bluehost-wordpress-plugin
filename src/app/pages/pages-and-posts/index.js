@@ -7,6 +7,7 @@ import BookingAndAppointments from './bookingAndAppointments';
 import ProductsPages from './ProductsPages';
 import AppStore from '../../data/store';
 
+
 const PagesAndPosts = () => {
 	const { store } = useContext( AppStore );
 
